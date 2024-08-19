@@ -3,6 +3,7 @@ package ru.borisov.dataanalyzergrpcmicroservice.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.borisov.dataanalyzergrpcmicroservice.model.Data;
 import ru.borisov.dataanalyzergrpcmicroservice.repository.DataRepository;
 
@@ -23,6 +24,7 @@ public class DataServiceImpl implements DataService {
     }
 
     @Override
+    @Transactional
     public List<Data> getWithBatch(Long batchSize) {
 
         List<Data> data = dataRepository.findAllWithOffset(batchSize);
